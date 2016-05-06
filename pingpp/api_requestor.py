@@ -358,7 +358,7 @@ class APIRequestor(object):
         key = open(private_key_path, "r").read()
         rsa_key = RSA.importKey(key)
         signer = PKCS1_v1_5.new(rsa_key)
-        digest = SHA256.new(data)
+        digest = SHA256.new(data.encode('utf-8'))
         sign = signer.sign(digest)
 
         return b64encode(sign)
